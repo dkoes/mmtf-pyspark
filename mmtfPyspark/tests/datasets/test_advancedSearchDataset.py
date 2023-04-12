@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 
 import unittest
-
 from pyspark.sql import SparkSession
-
 from mmtfPyspark.datasets import advancedSearchDataset
-
+import pytest
 
 class AdvancedSearchDatasetTest(unittest.TestCase):
 
@@ -14,6 +12,7 @@ class AdvancedSearchDatasetTest(unittest.TestCase):
             .appName("AdvancedSearchDatasetTest") \
             .getOrCreate()
 
+    @pytest.mark.skip(reason="Webservice obsolete.")
     def test1(self):
         query = (
             "<orgPdbQuery>"
@@ -25,6 +24,7 @@ class AdvancedSearchDatasetTest(unittest.TestCase):
         ds = advancedSearchDataset.get_dataset(query)
         self.assertEqual(ds.filter("pdbId = '1A5K'").count(), 1)
 
+    @pytest.mark.skip(reason="Webservice obsolete.")
     def test2(self):
         query = (
             "<orgPdbQuery>"
@@ -37,6 +37,7 @@ class AdvancedSearchDatasetTest(unittest.TestCase):
         ds = advancedSearchDataset.get_dataset(query)
         self.assertEqual(ds.filter("pdbChainId = '10GS.A' OR pdbChainId = '10GS.B'").count(), 2)
 
+    @pytest.mark.skip(reason="Webservice obsolete.")
     def test3(self):
         query = (
             "<orgPdbQuery>"

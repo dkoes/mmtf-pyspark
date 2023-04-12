@@ -14,6 +14,7 @@ class PdbPtmDatasetTest(unittest.TestCase):
             .appName("PdbPtmDatasetTest") \
             .getOrCreate()
 
+    @pytest.mark.skip(reason="Obsolete due to API change")
     def test1(self):
         ds = pm.get_ptm_dataset()
         ds.show()

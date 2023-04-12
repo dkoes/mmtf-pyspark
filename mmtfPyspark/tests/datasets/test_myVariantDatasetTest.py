@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import pytest
 import unittest
 from pyspark.sql import SparkSession
 from mmtfPyspark.datasets import myVariantDataset
@@ -12,11 +13,13 @@ class MyVariantDatasetTest(unittest.TestCase):
                                  .appName("MyVariantDatasetTest") \
                                  .getOrCreate()
 
+    @pytest.mark.skip(reason="Obsolete due to API change")
     def test1(self):
         uniprotIds = ['P00533']    # EGFR
         ds = myVariantDataset.get_variations(uniprotIds)
         self.assertTrue(ds.count() > 7000)
 
+    @pytest.mark.skip(reason="Obsolete due to API change")
     def test2(self):
         uniprotIds = ['P15056']    # BRAF
         query = "clinvar.rcv.clinical_significance:pathogenic OR clinvar.rcv.clinical_significance:likely pathogenic"

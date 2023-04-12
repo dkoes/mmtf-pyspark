@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import unittest
+import pytest
 
 from pyspark.sql import SparkSession
 
@@ -15,10 +16,12 @@ class DbPtmDatasetTest(unittest.TestCase):
             .appName("DbPtmDatasetTest") \
             .getOrCreate()
 
+    @pytest.mark.skip(reason="Webservice obsolete.")
     def test1(self):
         ds = pm.download_ptm_dataset(PtmType.S_LINKEDGLYCOSYLATION)
         self.assertGreater(ds.count(), 4)
 
+    @pytest.mark.skip(reason="Webservice obsolete.")
     def test2(self):
         ds = pm.get_ptm_dataset()
         self.assertGreater(ds.count(), 900000)
